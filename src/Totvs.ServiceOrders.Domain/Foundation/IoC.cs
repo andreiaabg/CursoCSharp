@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Totvs.OrdemServico.Domain.Foundation
+namespace Totvs.ServiceOrders.Domain.Foundation
 {
     /// <summary>
     /// Resolve as dependencias da camada de infraestrutura

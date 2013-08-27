@@ -7,8 +7,11 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Totvs.OrdemServico.Domain.Foundation;
+using Totvs.ServiceOrders.Domain.Foundation;
 using Totvs.ServiceOrders.Domain.Entities;
+using System.Security.Principal;
+using Totvs.ServiceOrders.Domain.Repositories;
+using Totvs.ServiceOrders.Domain.Services;
 
 namespace Totvs.ServiceOrders.UI.Util
 {
@@ -31,34 +34,49 @@ namespace Totvs.ServiceOrders.UI.Util
 
         static InMemoryDatabase()
         {
-            IoC.Register<IClock, IClock>(() => Contexts[Thread.CurrentPrincipal.Identity.Name].Clock);
-            IoC.Register<IUnitOfWork, IUnitOfWork>(() => Contexts[Thread.CurrentPrincipal.Identity.Name].UnitOfWork);
-            IoC.Register<IQuery, IQuery>(() => Contexts[Thread.CurrentPrincipal.Identity.Name].Query);
+            Func<Context> context = () => 
+                    (Contexts.ContainsKey(Thread.CurrentPrincipal.Identity.Name)) 
+                        ? Contexts[Thread.CurrentPrincipal.Identity.Name]
+                        : Contexts[typeof(GenericIdentity).Name];
+
+            IoC.Register<IClock, IClock>(() => context().Clock);
+            IoC.Register<IUnitOfWork, IUnitOfWork>(() => context().UnitOfWork);
+            IoC.Register<IQuery, IQuery>(() => context().Query);
         }
 
-        public InMemoryDatabase(DateTime now, params Assembly[] assemblies)
+        public InMemoryDatabase(DateTime now, string userName, params Assembly[] assemblies)
         {
-            var unitOfWork = MockRepository.GenerateMock<IUnitOfWork>();
-            var clock = MockRepository.GenerateMock<IClock>();
-            var query = MockRepository.GenerateMock<IQuery>();
+            lock (Contexts)
+            {
+                var unitOfWork = MockRepository.GenerateMock<IUnitOfWork>();
+                var clock = MockRepository.GenerateMock<IClock>();
+                var query = MockRepository.GenerateMock<IQuery>();
 
-            unitOfWork.Expect(u => u.CreateQuery()).WhenCalled(_ =>
-                _.ReturnValue = IoC.Resolve<IQuery>()
-                );
-            NowFake = now;
-            clock.Expect(c => c.GetNow()).WhenCalled(_ => _.ReturnValue = NowFake).Return(default(DateTime));
-            unitOfWork.Expect(u => u.Dispose()).WhenCalled(a => UnitOfWorkManager.Unregister());
+                unitOfWork.Expect(u => u.CreateQuery()).WhenCalled(_ =>
+                    _.ReturnValue = IoC.Resolve<IQuery>()
+                    );
+                NowFake = now;
+                clock.Expect(c => c.GetNow()).WhenCalled(_ => _.ReturnValue = NowFake).Return(default(DateTime));
+                unitOfWork.Expect(u => u.Dispose()).WhenCalled(a => UnitOfWorkManager.Unregister());
 
-            Contexts.TryAdd(Thread.CurrentPrincipal.Identity.Name,
-                new Context
+                Contexts.TryAdd(userName,
+                    new Context
+                    {
+                        Clock = clock,
+                        UnitOfWork = unitOfWork,
+                        Query = query
+                    });
+
+                foreach (var assembly in assemblies)
+                    ConfigureAllRepositoryEntities(assembly, unitOfWork, query);
+
+                Thread.CurrentPrincipal = new UserPrincipal(new UserIdentity(Foundation.AuthenticateType.None, true, userName));
+                using (var users = new Users())
                 {
-                    Clock = clock,
-                    UnitOfWork = unitOfWork,
-                    Query = query
-                });
-
-            foreach (var assembly in assemblies)
-                ConfigureAllRepositoryEntities(assembly, unitOfWork, query);
+                    User newUser = new User(userName, userName);
+                    users.Insert(newUser);
+                }
+            }
         }
 
         private void ConfigureAllRepositoryEntities(Assembly domain, IUnitOfWork unitOfWork, IQuery query)

@@ -9,13 +9,16 @@ using Totvs.ServiceOrders.Domain.Entities;
 namespace Totvs.ServiceOrders.Domain.Specifications
 {
     /// <summary>
-    /// Especificação
+    /// Especificação : Usuários
     /// </summary>
-    public class ProductByName : Specification<Product>
+    class UserByName : Specification<User>
     {
-        public ProductByName(string name)
+        /// <summary>
+        /// Usuário por None
+        /// </summary>
+        public UserByName(string userName)
         {
-            SatisfiedBy = product => product.Name == name;
+            SatisfiedBy = user => user.UserName == userName;
         }
     }
 }

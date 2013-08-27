@@ -5,24 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Totvs.OrdemServico.Domain.Foundation;
+using Totvs.ServiceOrders.Domain.Foundation;
 using Totvs.ServiceOrders.Domain.Entities;
 using Totvs.ServiceOrders.Factory;
+using Totvs.ServiceOrders.Repositories;
 
 namespace Totvs.ServiceOrders.UI.DomainTests
 {
     [TestClass]
     public class ProductTest : BaseTest
     {
-
-        private Lazy<List<Product>> _products;
-
-        public List<Product> GetProducts()
-        {
-            List<Product> products = new List<Product>();
-            products.Add(Factory.Create.Product("P001", "1.0"));
-            return products;
-        }
 
         /// <summary>
         /// Quando:
@@ -33,19 +25,25 @@ namespace Totvs.ServiceOrders.UI.DomainTests
         [TestMethod]
         public void ProductVersionValidateTest()
         {
-            //enviroment
+            DateTime now = new DateTime(2013, 7, 21, 12, 0, 0);
             const string productName = "Classis";
             const string productVersionCode = "11.90";
             {
-                CreateTestInstance();
+                CreateTestInstance().NowFake = now;
             }
 
-            //test
-            Product product = Create.Product(productName, productVersionCode);
-            ProductVersion productVersion = product.GetVersionByCode(productVersionCode);
-            Assert.IsNotNull(productVersion);
-            Assert.AreEqual(productVersionCode, productVersion.Version.ToString());
-            Assert.AreEqual(product, productVersion.Product);
+            using (Products products = new Products())
+            {
+                Product product = Create.Product(productName, productVersionCode);
+                ProductVersion productVersion = product.GetVersionByCode(productVersionCode);
+                Assert.IsNotNull(productVersion);
+                products.Insert(product);
+
+                Assert.AreEqual(productVersionCode, productVersion.Version.ToString());
+                Assert.AreEqual(product, productVersion.Product);
+                Assert.AreEqual("ProductVersionValidateTest", product.CreatedBy);
+                Assert.AreEqual(now, product.CreatedAt);
+            }
         }
     }
 }

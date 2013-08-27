@@ -45,9 +45,15 @@
     <Compile Include="Domain\Entities\Product.cs" />
     <Compile Include="Domain\Entities\Requestor.cs" />
     <Compile Include="Domain\Entities\ProductVersion.cs" />
+    <Compile Include="Domain\Entities\User.cs" />
     <Compile Include="Domain\Exceptions\ProductAlreadyExists.cs" />
     <Compile Include="Domain\Factory\Create.cs" />
+    <Compile Include="Domain\Repositories\Users.cs" />
+    <Compile Include="Domain\Services\Authenticate.cs" />
+    <Compile Include="Domain\Specifications\UserByNameAndPassword.cs" />
     <Compile Include="Domain\Specifications\ProductByName.cs" />
+    <Compile Include="Domain\Specifications\UserByName.cs" />
+    <Compile Include="Foundation\AuthenticateType.cs" />
     <Compile Include="Foundation\IClock.cs" />
     <Compile Include="Foundation\UnitOfWorkManager.cs" />
     <Compile Include="Foundation\UserIdentity.cs" />
@@ -62,9 +68,7 @@
     <Compile Include="Foundation\Specification.cs" />
     <Compile Include="Helper\Check.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Domain\Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

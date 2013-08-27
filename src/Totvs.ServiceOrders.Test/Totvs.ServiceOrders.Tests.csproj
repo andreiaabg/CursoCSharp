@@ -66,6 +66,12 @@
   <ItemGroup>
     <Folder Include="FoundationTests\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Totvs.ServiceOrders.Domain\Totvs.ServiceOrders.csproj">
+      <Project>{1a158b2b-f3a7-4c75-a1c4-0e4dedfe7367}</Project>
+      <Name>Totvs.ServiceOrders</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

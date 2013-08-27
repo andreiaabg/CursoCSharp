@@ -4,9 +4,9 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Totvs.OrdemServico.Domain.Foundation;
+using Totvs.ServiceOrders.Domain.Foundation;
 
-namespace Totvs.OrdemServico.Infraestrutura.EntityFramework
+namespace Totvs.ServiceOrders.Infraestrutura.EntityFramework
 {
     public class AppContext : DbContext, IQuery, IUnitOfWork
     {

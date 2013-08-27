@@ -3,7 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using Totvs.ServiceOrders.Domain.Entities;
 
-namespace Totvs.OrdemServico.Domain.Foundation
+namespace Totvs.ServiceOrders.Domain.Foundation
 {
     /// <summary>
     /// Leituras da Camada de Persistencia

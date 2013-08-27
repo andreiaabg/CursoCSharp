@@ -5,12 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Totvs.OrdemServico.Domain.Foundation;
+using Totvs.ServiceOrders.Domain.Foundation;
 using Totvs.ServiceOrders.Domain.Entities;
 using Totvs.ServiceOrders.UI.Util;
+using Totvs.ServiceOrders.Domain.Services;
+using Totvs.ServiceOrders.Domain.Repositories;
+using System.Security.Principal;
 
 namespace Totvs.ServiceOrders.UI.DomainTests
 {
+    /// <summary>
+    /// Testes unitários
+    /// </summary>
     public abstract class BaseTest
     {
         /// <summary>
@@ -23,9 +29,12 @@ namespace Totvs.ServiceOrders.UI.DomainTests
 
             instanceName = instanceName ?? stackFrame[1].GetMethod().Name;
 
+            var database = new InMemoryDatabase(DateTime.MinValue, instanceName, typeof(Entity).Assembly);
+
             //autenticar
-            Thread.CurrentPrincipal = new UserPrincipal(new UserIdentity("Test", true, instanceName));
-            var database = new InMemoryDatabase(new DateTime(2013, 7, 21, 21, 50, 0), typeof(Entity).Assembly);
+            Authentication authenticate = new Authentication();
+            authenticate.Login(instanceName, instanceName);
+
             return database;
         }
     }

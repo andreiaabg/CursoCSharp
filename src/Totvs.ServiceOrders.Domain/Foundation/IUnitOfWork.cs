@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Totvs.ServiceOrders.Domain.Entities;
 
-namespace Totvs.OrdemServico.Domain.Foundation
+namespace Totvs.ServiceOrders.Domain.Foundation
 {
     /// <summary>
     /// Unidade de Trabalho

@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Totvs.OrdemServico.Domain.Foundation
+namespace Totvs.ServiceOrders.Domain.Foundation
 {
     /// <summary>
     /// Especificação
@@ -13,7 +13,6 @@ namespace Totvs.OrdemServico.Domain.Foundation
     public abstract class Specification<TEntity>
         where TEntity : class 
     {
-
         /// <summary>
         /// Especificação
         /// </summary>

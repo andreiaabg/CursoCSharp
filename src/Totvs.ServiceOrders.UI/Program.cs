@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Totvs.OrdemServico.UI
+namespace Totvs.ServiceOrders.UI
 {
     static class Program
     {

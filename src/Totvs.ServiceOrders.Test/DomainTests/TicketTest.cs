@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Totvs.OrdemServico.Domain.Foundation;
 using Totvs.ServiceOrders.Domain.Entities;
 using Totvs.ServiceOrders.Factory;
 using Totvs.ServiceOrders.Repositories;

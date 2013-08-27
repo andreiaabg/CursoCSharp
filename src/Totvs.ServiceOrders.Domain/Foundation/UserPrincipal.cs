@@ -5,7 +5,7 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Totvs.OrdemServico.Domain.Foundation
+namespace Totvs.ServiceOrders.Domain.Foundation
 {
     /// <summary>
     /// Contexto de Execução do Aplicativo

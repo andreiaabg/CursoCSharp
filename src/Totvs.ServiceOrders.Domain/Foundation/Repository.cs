@@ -2,8 +2,9 @@
 using System.Linq;
 using System.Threading;
 using Totvs.ServiceOrders.Domain.Entities;
+using Totvs.ServiceOrders.Domain.Services;
 
-namespace Totvs.OrdemServico.Domain.Foundation
+namespace Totvs.ServiceOrders.Domain.Foundation
 {
     /// <summary>
     /// Funciona como um mediador entre a cada de dominio e a camada de persistencia para as entidades
@@ -18,8 +19,10 @@ namespace Totvs.OrdemServico.Domain.Foundation
         /// <summary>
         /// Repositório
         /// </summary>
-        public Repository()
+        internal Repository()
         {
+            Authentication.CheckAuthenticate();
+
             _unitOfWork = UnitOfWorkManager.GetInstance();
             _query = _unitOfWork.CreateQuery();
             _clock = IoC.Resolve<IClock>();
@@ -87,7 +90,6 @@ namespace Totvs.OrdemServico.Domain.Foundation
         /// </summary>
         public void Dispose()
         {
-            UnitOfWorkManager.Unregister();
             GC.SuppressFinalize(this);
         }
     }

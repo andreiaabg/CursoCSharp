@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Totvs.OrdemServico.Domain.Foundation
+namespace Totvs.ServiceOrders.Domain.Foundation
 {
     /// <summary>
     /// Gerenciador de Unidades de Trabalho
@@ -21,7 +21,9 @@ namespace Totvs.OrdemServico.Domain.Foundation
         {
             var userPrincipal = Thread.CurrentPrincipal as UserPrincipal;
             if (userPrincipal == null)
-                throw new SecurityException();
+                //não há controle transacional para usuários não autenticados
+                return IoC.Resolve<IUnitOfWork>();
+
             userPrincipal.VoteInUse++;
             if (userPrincipal.UnitOfWork != null)
             {

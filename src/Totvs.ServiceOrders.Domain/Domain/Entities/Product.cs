@@ -25,8 +25,13 @@ namespace Totvs.ServiceOrders.Domain.Entities
             this.Name = name;
             this.Versions = productVersions.ToLazy();
         }
-
-        internal Product() { } 
+        
+        /// <summary>
+        /// Produto
+        /// </summary>
+        internal Product() 
+        { 
+        } 
 
         /// <summary>
         /// Todas as versões

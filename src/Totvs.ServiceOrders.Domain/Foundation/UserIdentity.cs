@@ -4,8 +4,9 @@ using System.Linq;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
+using Totvs.ServiceOrders.Foundation;
 
-namespace Totvs.OrdemServico.Domain.Foundation
+namespace Totvs.ServiceOrders.Domain.Foundation
 {
     /// <summary>
     /// Identidade do Usuário do Sistema
@@ -15,9 +16,9 @@ namespace Totvs.OrdemServico.Domain.Foundation
         /// <summary>
         /// Identidade do Usuário do Sistema
         /// </summary>
-        public UserIdentity(string authenticationType, bool isAuthenticated, string name)
+        public UserIdentity(AuthenticateType authenticationType, bool isAuthenticated, string name)
         {
-            AuthenticationType = authenticationType;
+            AuthenticationType = Enum.GetName(typeof(AuthenticateType), authenticationType);
             IsAuthenticated = isAuthenticated;
             Name = name;
         }

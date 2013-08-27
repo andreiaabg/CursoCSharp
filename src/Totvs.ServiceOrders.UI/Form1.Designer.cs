@@ -1,4 +1,4 @@
-﻿namespace Totvs.OrdemServico.UI
+﻿namespace Totvs.ServiceOrders.UI
 {
     partial class Form1
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Totvs.OrdemServico.Domain.Foundation;
+using Totvs.ServiceOrders.Domain.Foundation;
 using Totvs.ServiceOrders.Domain.Entities;
 using Totvs.ServiceOrders.Domain.Specifications;
 
