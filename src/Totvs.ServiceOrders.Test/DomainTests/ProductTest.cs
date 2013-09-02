@@ -15,6 +15,8 @@ namespace Totvs.ServiceOrders.UI.DomainTests
     [TestClass]
     public class ProductTest : BaseTest
     {
+        const string productName = "Classis";
+        const string productVersionCode = "11.90";
 
         /// <summary>
         /// Quando:
@@ -23,11 +25,9 @@ namespace Totvs.ServiceOrders.UI.DomainTests
         ///     Certificar que a versão seja válida
         /// </summary>
         [TestMethod]
-        public void ProductVersionValidateTest()
+        public void When_CreateAndInsertNewProduct_ShouldCreateValidProductVersion()
         {
             DateTime now = new DateTime(2013, 7, 21, 12, 0, 0);
-            const string productName = "Classis";
-            const string productVersionCode = "11.90";
             {
                 CreateTestInstance().NowFake = now;
             }

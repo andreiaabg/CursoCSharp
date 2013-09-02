@@ -13,9 +13,16 @@ using Totvs.ServiceOrders.UI.Util;
 
 namespace Totvs.ServiceOrders.UI.DomainTests
 {
+    /// <summary>
+    /// Testes : Chamado
+    /// </summary>
     [TestClass]
     public class TicketTest : BaseTest
     {
+        const string productName = "Classis";
+        const string productversion = "11.90";
+        const string requestorName = "andreia.goncalves";
+        const string incidentDescriptor = "Não abre a tela de cadastro de aluno";
 
         /// <summary>
         /// Quando: 
@@ -24,13 +31,9 @@ namespace Totvs.ServiceOrders.UI.DomainTests
         ///     Garantir que um identificador válido foi Gerado
         /// </summary>
         [TestMethod]
-        public void CreateTicket()
+        public void When_CreateTicket_ShouldReturnValidTicket()
         {
             //enviroment
-            const string productName = "Classis";
-            const string productversion = "11.90";
-            const string requestorName = "andreia.goncalves";
-            const string incidentDescriptor = "Não abre a tela de cadastro de aluno";
             {
                 CreateTestInstance();
                 using (var products = new Products())
@@ -43,7 +46,7 @@ namespace Totvs.ServiceOrders.UI.DomainTests
             //test
             Requestor requestor = new Requestor(requestorName);
             Ticket ticket = Create.Ticket(requestor, productName, productversion, incidentDescriptor);
-            Assert.AreEqual(1, ticket.Id);
+            Assert.IsNotNull(ticket);
         }
 
 
@@ -55,13 +58,9 @@ namespace Totvs.ServiceOrders.UI.DomainTests
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ProductNotFoundException))]
-        public void When_CreateProductNotRegistered_ShouldProductNotFoundException()
+        public void When_CreateTicketWithProductNotRegistered_ShouldProductNotFoundException()
         {
             //enviroment
-            const string productName = "Classis";
-            const string productversion = "11.90";
-            const string requestorName = "andreia.goncalves";
-            const string incidentDescriptor = "Não abre a tela de cadastro de aluno";
             {
                 CreateTestInstance();
             }
