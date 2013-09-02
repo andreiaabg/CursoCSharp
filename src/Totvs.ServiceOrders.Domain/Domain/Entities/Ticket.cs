@@ -30,9 +30,9 @@ namespace Totvs.ServiceOrders.Domain.Entities
             ProductVersion productVersion, 
             Incident incidente)
         {
-            Check.IsNotNull(solicitante, new ArgumentNullException("solicitante"));
-            Check.IsNotNull(productVersion, new ArgumentNullException("versaoProduto"));
-            Check.IsNotNull(incidente, new ArgumentNullException("incidente"));
+            Check.IsNull(solicitante, new ArgumentNullException("solicitante"));
+            Check.IsNull(productVersion, new ArgumentNullException("versaoProduto"));
+            Check.IsNull(incidente, new ArgumentNullException("incidente"));
 
             this.requestor = solicitante;
             this.productVersion = productVersion;

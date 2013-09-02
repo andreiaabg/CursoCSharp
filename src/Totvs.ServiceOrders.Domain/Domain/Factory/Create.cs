@@ -7,6 +7,7 @@ using Totvs.ServiceOrders.Exceptions;
 using Totvs.ServiceOrders.Domain.Entities;
 using Totvs.ServiceOrders.Helper;
 using Totvs.ServiceOrders.Repositories;
+using Totvs.ServiceOrders.Domain.Exceptions;
 
 namespace Totvs.ServiceOrders.Factory
 {
@@ -48,6 +49,7 @@ namespace Totvs.ServiceOrders.Factory
             using (Products products = new Products())
             {
                 Product product = products.GetByName(productName);
+                Check.IsNull(product, new ProductNotFoundException(productName));
                 ProductVersion productVersion = product.GetVersionByCode(versionCode);
 
                 Incident incidente = new Incident(indidentDescription);

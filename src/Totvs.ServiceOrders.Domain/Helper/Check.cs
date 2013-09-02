@@ -28,6 +28,17 @@ namespace Totvs.ServiceOrders.Helper
         /// </summary>
         public static void IsNotNull(object objeto, Exception excecao)
         {
+            if (objeto != null)
+            {
+                throw excecao;
+            }
+        }
+
+        /// <summary>
+        /// Retorna exceção se o objeto for nulo
+        /// </summary>
+        public static void IsNull(object objeto, Exception excecao)
+        {
             if (objeto == null)
             {
                 throw excecao;

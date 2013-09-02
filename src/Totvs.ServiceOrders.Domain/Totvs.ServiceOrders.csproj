@@ -47,6 +47,7 @@
     <Compile Include="Domain\Entities\ProductVersion.cs" />
     <Compile Include="Domain\Entities\User.cs" />
     <Compile Include="Domain\Exceptions\ProductAlreadyExists.cs" />
+    <Compile Include="Domain\Exceptions\ProductNotFoundException.cs" />
     <Compile Include="Domain\Factory\Create.cs" />
     <Compile Include="Domain\Repositories\Users.cs" />
     <Compile Include="Domain\Services\Authenticate.cs" />

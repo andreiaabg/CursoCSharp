@@ -13,8 +13,12 @@ namespace Totvs.ServiceOrders.Domain.Specifications
     /// </summary>
     public class ProductByName : Specification<Product>
     {
+        public string ProductName { get; set; }
+
+
         public ProductByName(string name)
         {
+            ProductName = name;
             SatisfiedBy = product => product.Name == name;
         }
     }
