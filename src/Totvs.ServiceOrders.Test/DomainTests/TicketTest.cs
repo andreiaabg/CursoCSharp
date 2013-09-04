@@ -1,10 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using Totvs.ServiceOrders.Domain.Entities;
 using Totvs.ServiceOrders.Domain.Exceptions;
 using Totvs.ServiceOrders.Factory;
@@ -47,7 +41,12 @@ namespace Totvs.ServiceOrders.UI.DomainTests
             Requestor requestor = new Requestor(requestorName);
             Ticket ticket = Create.Ticket(requestor, productName, productversion, incidentDescriptor);
             Assert.IsNotNull(ticket);
+            Assert.AreEqual(ticket.Requestor, requestor);
+            Assert.AreEqual(ticket.ProductVersion.Product.Name, productName);
+            Assert.AreEqual(ticket.ProductVersion.Version.ToString(), productversion);
+            Assert.AreEqual(ticket.Incident.Description, incidentDescriptor);
         }
+
 
 
         /// <summary>
@@ -69,6 +68,35 @@ namespace Totvs.ServiceOrders.UI.DomainTests
             Requestor requestor = new Requestor(requestorName);
             Create.Ticket(requestor, productName, productversion, incidentDescriptor);
         }
+
+        /// <summary>
+        /// Quando:
+        ///     Tentamos criar um chamado de um produto cuja versão não exista na base de dados
+        /// Devemos:
+        ///     Subir a exceção 'VersionNotFound'
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(VersionNotFoundException))]
+        public void When_CreateTicketWithVersionNotRegistered_ShouldVersionNotFoundException()
+        {
+            const string existVersion = "10.00";
+            const string tryOtherVersion = "12.00";
+
+            //enviroment
+            {
+                CreateTestInstance();
+                using (var products = new Products())
+                {
+                    var product = Create.Product(productName, existVersion);
+                    products.Insert(product);
+                }
+            }
+
+            //test
+            Requestor requestor = new Requestor(requestorName);
+            Create.Ticket(requestor, productName, tryOtherVersion, incidentDescriptor);
+        }
+
 
 
     }

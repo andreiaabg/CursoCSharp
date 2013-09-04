@@ -1,10 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using Totvs.ServiceOrders.Domain.Foundation;
 using Totvs.ServiceOrders.Domain.Entities;
 using Totvs.ServiceOrders.Factory;

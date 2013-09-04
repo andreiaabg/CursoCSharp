@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="DomainTests\BaseTest.cs" />
     <Compile Include="DomainTests\ProductTest.cs" />
+    <Compile Include="DomainTests\SecurityTest.cs" />
     <Compile Include="DomainTests\TicketTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\InMemoryDatabase.cs" />
