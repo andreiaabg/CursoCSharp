@@ -10,7 +10,7 @@ namespace Totvs.ServiceOrders.Domain.Entities
         /// <summary>
         /// Descrição
         /// </summary>
-        private readonly string descricao;
+        public string Description { get; set; }
 
         /// <summary>
         /// Incidente
@@ -18,7 +18,7 @@ namespace Totvs.ServiceOrders.Domain.Entities
         /// <param name="descricao">Descrição</param>
         public Incident(string descricao)
         {
-            this.descricao = descricao;
+            this.Description = descricao;
         }
     }
 }

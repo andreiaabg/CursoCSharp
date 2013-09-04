@@ -9,10 +9,6 @@ namespace Totvs.ServiceOrders.Domain.Entities
     /// </summary>
     public class Ticket : Entity
     {
-        private readonly Requestor requestor;
-        private readonly ProductVersion productVersion;
-        private readonly Incident incident;
-
         /// <summary>
         /// Identificador do Chamado
         /// </summary>
@@ -22,22 +18,26 @@ namespace Totvs.ServiceOrders.Domain.Entities
         /// <summary>
         /// Chamado
         /// </summary>
-        /// <param name="solicitante">Solicitante</param>
+        /// <param name="requestor">Solicitante</param>
         /// <param name="productVersion">Versão do Produto</param>
         /// <param name="incidente">Incidente</param>
         public Ticket(
-            Requestor solicitante,
+            Requestor requestor,
             ProductVersion productVersion, 
             Incident incidente)
         {
-            Check.IsNull(solicitante, new ArgumentNullException("solicitante"));
+            Check.IsNull(requestor, new ArgumentNullException("solicitante"));
             Check.IsNull(productVersion, new ArgumentNullException("versaoProduto"));
             Check.IsNull(incidente, new ArgumentNullException("incidente"));
 
-            this.requestor = solicitante;
-            this.productVersion = productVersion;
-            this.incident = incidente;
+            Requestor = requestor;
+            ProductVersion = productVersion;
+            Incident = incidente;
             this.Id = 1;
         }
+
+        public Requestor Requestor { get; set; }
+        public ProductVersion ProductVersion { get; set; }
+        public Incident Incident {get; set;}
     }
 }
