@@ -21,7 +21,7 @@ namespace Totvs.ServiceOrders.Domain.Foundation
         /// </summary>
         internal Repository()
         {
-            Authentication.CheckAuthenticate();
+            //Authentication.CheckAuthenticate();
 
             _unitOfWork = UnitOfWorkManager.GetInstance();
             _query = _unitOfWork.CreateQuery();

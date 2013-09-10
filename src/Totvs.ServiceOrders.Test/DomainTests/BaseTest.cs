@@ -22,7 +22,7 @@ namespace Totvs.ServiceOrders.UI.DomainTests
         /// <summary>
         /// Configurar o banco de dados em memória
         /// </summary>
-        protected static InMemoryDatabase CreateTestInstance(string instanceName = null)
+        public static InMemoryDatabase CreateTestInstance(string instanceName = null)
         {
             var stackTrace = new StackTrace(); 
             var stackFrame = stackTrace.GetFrames();

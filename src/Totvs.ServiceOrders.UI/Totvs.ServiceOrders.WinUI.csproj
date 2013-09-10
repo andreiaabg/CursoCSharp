@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Totvs.ServiceOrders.WinUI</RootNamespace>
-    <AssemblyName>Totvs.ServiceOrders.WinUI</AssemblyName>
+    <AssemblyName>Totvs.ServiceOrders.WinUI2</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -45,19 +45,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Foudation\Binder\Binder.cs" />
     <Compile Include="Foudation\Binder\TextBoxBinder.cs" />
     <Compile Include="Foudation\Configure.cs" />
+    <Compile Include="MDI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MDI.Designer.cs">
+      <DependentUpon>MDI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDI.resx">
+      <DependentUpon>MDI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -86,6 +95,14 @@
     <ProjectReference Include="..\..\Totvs.ServiceOrders.Common\Totvs.ServiceOrders.Common.csproj">
       <Project>{ed2838e2-8b78-45dd-b96a-01f577621b20}</Project>
       <Name>Totvs.ServiceOrders.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Totvs.ServiceOrders.Domain\Totvs.ServiceOrders.csproj">
+      <Project>{1a158b2b-f3a7-4c75-a1c4-0e4dedfe7367}</Project>
+      <Name>Totvs.ServiceOrders</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Totvs.ServiceOrders.Test\Totvs.ServiceOrders.Tests.csproj">
+      <Project>{72d6b083-2848-41a3-89fa-1971754b5db5}</Project>
+      <Name>Totvs.ServiceOrders.Tests</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
