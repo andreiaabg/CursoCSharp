@@ -100,9 +100,9 @@
       <Project>{1a158b2b-f3a7-4c75-a1c4-0e4dedfe7367}</Project>
       <Name>Totvs.ServiceOrders</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Totvs.ServiceOrders.Test\Totvs.ServiceOrders.Tests.csproj">
-      <Project>{72d6b083-2848-41a3-89fa-1971754b5db5}</Project>
-      <Name>Totvs.ServiceOrders.Tests</Name>
+    <ProjectReference Include="..\Totvs.ServiceOrders.Foundation\Totvs.ServiceOrders.Infra.csproj">
+      <Project>{8039febe-5264-47bb-9f71-339d8e853c92}</Project>
+      <Name>Totvs.ServiceOrders.Infra</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

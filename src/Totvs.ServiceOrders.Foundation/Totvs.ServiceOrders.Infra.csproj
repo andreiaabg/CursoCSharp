@@ -46,6 +46,10 @@
   <ItemGroup>
     <Compile Include="EntityFramework\AppContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlServer\Configuration.cs" />
+    <Compile Include="SqlServer\DataMapper.cs" />
+    <Compile Include="SqlServer\SqlParser.cs" />
+    <Compile Include="SqlServer\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -57,6 +61,7 @@
       <Name>Totvs.ServiceOrders</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
