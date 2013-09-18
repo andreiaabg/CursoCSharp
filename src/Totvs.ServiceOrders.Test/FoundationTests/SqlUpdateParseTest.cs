@@ -36,6 +36,17 @@ namespace Totvs.ServiceOrders.UI.FoundationTests
                 ignoreCase: true);
             Assert.AreEqual("Teste", command.Parameters["@Description"].Value);
             Assert.AreEqual(1, command.Parameters["@Id"].Value);
+
+            var entityTest2 = new EntityTest();
+            entityTest.Id = 2;
+            entityTest.Description = "Teste 2";
+            var command2 = parser.CreateUpdateCommand(entityTest);
+            Assert.AreEqual(
+                @"UPDATE TESTE SET DESCRIPTION = @Description WHERE ID = @Id",
+                command.CommandText,
+                ignoreCase: true);
+            Assert.AreEqual("Teste 2", command2.Parameters["@Description"].Value);
+            Assert.AreEqual(2, command2.Parameters["@Id"].Value);
         }
     }
 }
