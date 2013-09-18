@@ -26,7 +26,7 @@ namespace Totvs.ServiceOrders.Domain.Entities
         /// <summary>
         /// Senha
         /// </summary>
-        public Guid Password { internal get; set; }
+        public Guid Password { get; set; }
 
         /// <summary>
         /// Checa se a senha do usuário esta correta

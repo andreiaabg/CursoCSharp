@@ -7,6 +7,8 @@ namespace Totvs.ServiceOrders.Domain.Entities
     /// </summary>
     public class Incident : Entity
     {
+        public int TicketId { get; set; }
+
         /// <summary>
         /// Descrição
         /// </summary>

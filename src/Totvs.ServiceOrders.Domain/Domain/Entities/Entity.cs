@@ -8,6 +8,11 @@ namespace Totvs.ServiceOrders.Domain.Entities
     public abstract class Entity
     {
         /// <summary>
+        /// Identificador único da entidade
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
         /// Criado por
         /// </summary>
         public string CreatedBy { get; set; }

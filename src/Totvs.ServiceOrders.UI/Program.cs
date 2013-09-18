@@ -18,6 +18,7 @@ namespace Totvs.ServiceOrders.UI
         [STAThread]
         static void Main()
         {
+            Configuration.ConnectionString("DataSource=(local);user=rm;pwd=rm");
             Configuration.Mapping();
 
             Application.EnableVisualStyles();

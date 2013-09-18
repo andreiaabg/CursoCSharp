@@ -13,7 +13,7 @@ namespace Totvs.ServiceOrders.Infra.SqlServer
         private readonly SqlConnection _sqlConnection;
         private bool isDispose;
 
-        public string ConnectionString { get; set; }
+        internal static string ConnectionString;
 
         public UnitOfWork()
         {

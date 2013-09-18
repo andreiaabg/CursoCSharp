@@ -9,6 +9,8 @@ namespace Totvs.ServiceOrders.Domain.Entities
     /// </summary>
     public class ProductVersion : Entity
     {
+        public int ProductId { get; set; }
+
         /// <summary>
         /// Versão do Produto
         /// </summary>

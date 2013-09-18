@@ -9,6 +9,10 @@ namespace Totvs.ServiceOrders.Domain.Entities
     /// </summary>
     public class Ticket : Entity
     {
+        public int RequestorId { get; set; }
+        public int ProductVersionId { get; set; }
+        public int IncidentId { get; set; }
+
         /// <summary>
         /// Identificador do Chamado
         /// </summary>
